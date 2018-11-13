@@ -10,12 +10,12 @@ Find the lower cost/... to win
 
 1. Framework: jQuery
 1. CAIXA HTML load jQuery + developed DM.JS
-1. Devloped DM.js location: ai/src/resources/dataminig/clean_caixa_row_trash.js
+1. Devloped DM.js location: ai/src/resources/dataminig/data_mining.js
 1. Running tests & extract data:
     1. Run (startup) a server
         
         ```shell
-            $ cd ai/src/resources
+            $ cd src/resources/
             $ php -S localhost:5000
         ```
     1. [Open Browser at localhost:5000/(processed)lotofacil_draws.html](http://localhost:5000/(processed)lotofacil_draws.html)

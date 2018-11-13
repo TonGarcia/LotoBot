@@ -30,6 +30,39 @@ function getWinnersShare(tds) {
   };
 }
 
+function arrayToCSV(arr, prefix) {
+  let obj = {};
+  for(let i in arr) obj[`${prefix}_${i}`] = arr[i];
+  return obj;
+}
+
+function csvFormat(obj) {
+  let csvObj = {
+    'id': obj.id,
+    'date': obj.date,
+    'bet': obj.statistics.bet,
+    'winners_amount': obj.statistics.winners_amount,
+    'winners_share': obj.statistics.winners_share,
+  };
+
+  // csvObj.winners_amount =
+
+  return csvObj;
+}
+
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 let expectedTotalBets = 1731;
 let trs = $('table tr');
 let bets = {};
@@ -48,7 +81,7 @@ $(function(){
       let bet = {
         'id': getId(tds),
         'date': getDate(tds),
-        "result": getResult(tds),
+        "results": getResult(tds),
         "statistics": {
           "bet": getRevenue(tds),
           "winners_amount": getWinnersAmount(tds),
@@ -63,6 +96,7 @@ $(function(){
     let amountOfBets = Object.keys(bets).length;
     if(amountOfBets === expectedTotalBets) {
       console.log('EVERY BET RETRIEVED');
+      download('bets.json', JSON.stringify(window.bets));
     } else {
       console.log('Expected amount of bets: ' + expectedTotalBets + ', amount of retrieved bets: ' + amountOfBets);
     }
