@@ -7,9 +7,9 @@ function getId(tds) {return tds[0].innerHTML;}
 function getDate(tds) {return tds[1].innerHTML;}
 function getRevenue(tds) {return tds[17].innerHTML;}
 function getResult(tds) {
-  dawns = [];
-  for(i=2; i<16; i++) dawns.push(tds[i].innerHTML);
-  return dawns;
+  let rolls = [];
+  for(let i=2; i<16; i++) rolls.push(tds[i].innerHTML);
+  return rolls;
 }
 function getWinnersAmount(tds) {
   return {
@@ -95,8 +95,14 @@ $(function(){
     window.bets = bets;
     let amountOfBets = Object.keys(bets).length;
     if(amountOfBets === expectedTotalBets) {
+      const betsJSON = JSON.stringify(window.bets);
       console.log('EVERY BET RETRIEVED');
-      download('bets.json', JSON.stringify(window.bets));
+      download('bets.json', betsJSON);
+      console.log('JSON downloaded');
+
+      console.log('Creating CSV');
+      //TODO: create objects CSV ready, create it file & download it.... items, convert to file arrayToCSV(window.bets, prefix);
+      console.log('CSV downloaded');
     } else {
       console.log('Expected amount of bets: ' + expectedTotalBets + ', amount of retrieved bets: ' + amountOfBets);
     }
