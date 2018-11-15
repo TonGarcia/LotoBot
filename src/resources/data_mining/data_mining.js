@@ -40,7 +40,7 @@ function csvFormat(obj) {
   let csvObj = {
     'id': obj.id,
     'date': obj.date,
-    'bet': obj.statistics.bet,
+    'rolls': obj.statistics.rolls,
     'winners_amount': obj.statistics.winners_amount,
     'winners_share': obj.statistics.winners_share,
   };
@@ -63,9 +63,9 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-let expectedTotalBets = 1731;
+let expectedTotalDrawns = 1731;
 let trs = $('table tr');
-let bets = {};
+let drawns = [];
 
 $(function(){
   try {
@@ -78,33 +78,34 @@ $(function(){
       if(tds.length <= 2) continue;
       window.tr_tds = tds;
 
-      let bet = {
+      let rolls = {
         'id': getId(tds),
         'date': getDate(tds),
         "results": getResult(tds),
         "statistics": {
-          "bet": getRevenue(tds),
+          "rolls": getRevenue(tds),
           "winners_amount": getWinnersAmount(tds),
           "winners_share": getWinnersShare(tds)
         }
       };
 
-      bets[bet.id] = bet;
+      // drawns[rolls.id] = rolls;
+      drawns.push(rolls);
     }
 
-    window.bets = bets;
-    let amountOfBets = Object.keys(bets).length;
-    if(amountOfBets === expectedTotalBets) {
-      const betsJSON = JSON.stringify(window.bets);
+    window.drawns = drawns;
+    let amountOfDrawns = Object.keys(drawns).length;
+    if(amountOfDrawns === expectedTotalDrawns) {
+      const drawnsJSON = JSON.stringify(window.drawns);
       console.log('EVERY BET RETRIEVED');
-      download('bets.json', betsJSON);
+      download('drawns.json', drawnsJSON);
       console.log('JSON downloaded');
 
       console.log('Creating CSV');
-      //TODO: create objects CSV ready, create it file & download it.... items, convert to file arrayToCSV(window.bets, prefix);
+      //TODO: create objects CSV ready, create it file & download it.... items, convert to file arrayToCSV(window.drawns, prefix);
       console.log('CSV downloaded');
     } else {
-      console.log('Expected amount of bets: ' + expectedTotalBets + ', amount of retrieved bets: ' + amountOfBets);
+      console.log('Expected amount of drawns: ' + expectedTotalDrawns + ', amount of retrieved drawns: ' + amountOfDrawns);
     }
   }catch(error) {
     console.log('error(try/catch): ', error);
