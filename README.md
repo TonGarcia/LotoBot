@@ -27,6 +27,7 @@ Find the lower cost/... to win
 
 1. Generate venv (by default it initial project has it)
     ```shell
+        $ cd src
         $ virtualenv -p python3 .venv
     ```
 1. Activate env (__always do it before start jupyter__)

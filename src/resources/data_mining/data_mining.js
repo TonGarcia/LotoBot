@@ -63,7 +63,7 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-let expectedTotalDrawns = 1731;
+let expectedTotalDrawns = 1752;
 let trs = $('table tr');
 let drawns = [];
 
