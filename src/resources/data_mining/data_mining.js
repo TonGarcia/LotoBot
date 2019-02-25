@@ -3,6 +3,8 @@
 // script.type = 'text/javascript';
 // document.getElementsByTagName('head')[0].appendChild(script);
 
+console.log('data_mining.js called');
+
 function getId(tds) {return tds[0].innerHTML;}
 function getDate(tds) {return tds[1].innerHTML;}
 function getRevenue(tds) {return tds[17].innerHTML;}
@@ -63,7 +65,7 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-let expectedTotalDrawns = 1752;
+let expectedTotalDrawns = 1777;
 let trs = $('table tr');
 let drawns = [];
 
