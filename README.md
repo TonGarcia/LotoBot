@@ -28,15 +28,25 @@ Find the lower cost/... to win
 1. Generate venv (by default it initial project has it)
     ```shell
         $ cd src
-        $ virtualenv -p python3 .venv
+        $ virtualenv -p python3 venv
     ```
-1. Activate env (__always do it before start jupyter__)
-    ```shell
-        $ source .venv/bin/activate
-    ```
+    1.  Ativando o VENV (faça isso toda vez que for executar o projeto)
+        ```shell script
+            # MacOS
+            $ source venv/bin/activate
+
+            # Windows (Gitbash)
+            $ /c/Projects/LotoBot/venv/Scripts/activate.bat
+            # Windows (Prompt)
+            > cd C:\Projects\LotoBot
+            > venv\Scripts\activate.bat
+        ```
 1. Install by requirements.txt
-    ```shell
-      $  pip install -r requirements.txt
+    ```shell script
+        # MAC
+        $ pip install -r requirements_mac.txt
+        # WINDOWS
+        $ pip install -r requirements_win.txt   
     ```
 
 1. Perform any installation (__just an example bellow__)
@@ -44,8 +54,15 @@ Find the lower cost/... to win
         $ pip install tensorflow
     ```
 1. Freeze requirements
-    ```shell
-        $ pip freeze > requirements.txt
+    ```shell script
+      # Todos Sistemas Operacionais
+      $ pip install jupyter notebook
+      $ pip freeze > requirements.txt
+
+      # MAC
+      $ pip freeze > requirements_mac.txt
+      # WINDOWS
+      $ pip freeze > requirements_win.txt
     ```
 
 ### Jupyter Extensions
